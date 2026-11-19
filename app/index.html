@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grand Theft Auto VI — Trophy Guide &amp; Tracker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-inner">
+    <p class="kicker">Leonida &middot; PlayStation 5 &middot; 55 trophies</p>
+    <h1>Grand Theft Auto VI<br>Trophy Guide &amp; Tracker</h1>
+    <p class="lede">Every trophy, its official description, a guide in our own words with a named source, and a roadmap to the platinum. Works fully offline — no account, no network, no Rockstar artwork.</p>
+    <div class="progress-wrap" aria-label="Trophy progress">
+      <div class="progress-bar"><div id="progressFill" class="progress-fill" style="width:0%"></div></div>
+      <p class="progress-text"><span id="progressCount">0 / 55</span> earned &middot; <span id="progressPct">0%</span></p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="controls" aria-label="Controls">
+    <div class="control-row">
+      <label class="search-label" for="search">Search
+        <input id="search" type="search" placeholder="Trophy name or description…" autocomplete="off">
+      </label>
+      <label class="toggle">
+        <input id="spoilerToggle" type="checkbox" checked>
+        <span>Spoiler mode — hide hidden trophies until earned</span>
+      </label>
+    </div>
+    <div class="filters" role="group" aria-label="Filter trophies">
+      <button type="button" class="filter-btn active" data-filter="all">All <span class="count" data-count="all"></span></button>
+      <button type="button" class="filter-btn" data-filter="story">Story <span class="count" data-count="story"></span></button>
+      <button type="button" class="filter-btn" data-filter="missable">Missable <span class="count" data-count="missable"></span></button>
+      <button type="button" class="filter-btn" data-filter="collectibles">Collectibles <span class="count" data-count="collectibles"></span></button>
+      <button type="button" class="filter-btn" data-filter="activities">Activities <span class="count" data-count="activities"></span></button>
+      <button type="button" class="filter-btn" data-filter="online">Online <span class="count" data-count="online"></span></button>
+      <button type="button" class="filter-btn" data-filter="earned">Earned <span class="count" data-count="earned"></span></button>
+    </div>
+    <div class="control-row data-row">
+      <button type="button" id="exportBtn" class="action-btn">Export progress (JSON)</button>
+      <label class="action-btn import-btn" for="importFile">Import progress (JSON)</label>
+      <input id="importFile" type="file" accept=".json,application/json" hidden>
+      <button type="button" id="resetBtn" class="action-btn danger">Reset progress</button>
+      <span id="importMsg" class="import-msg" role="status"></span>
+    </div>
+  </section>
+
+  <section class="roadmap" id="roadmap" aria-label="Roadmap to the platinum">
+    <h2>Roadmap to the platinum</h2>
+    <p class="roadmap-note">Difficulty 4/10 &middot; about 200 hours &middot; 1 playthrough &middot; 0 online trophies &middot; no mission replay — keep a manual save at the start and end of each chapter. Cheats disable trophies and saving.</p>
+    <div id="roadmap" class="roadmap-phases"></div>
+  </section>
+
+  <section aria-label="Trophy list">
+    <h2 id="listHeading">All trophies</h2>
+    <p id="emptyMsg" class="empty-msg" hidden>No trophies match this filter.</p>
+    <div id="trophyList" class="trophy-list"></div>
+  </section>
+
+  <section class="sources-note" aria-label="About the sources">
+    <h2>How the guides are sourced</h2>
+    <p>Every guide is written in our own words for this guide. Each one names its source beside it. Most methods come from the community guide at PowerPyx, which we read in full. Where no community method is confirmed yet, the guide says so honestly and is derived from the official PlayStation description only — it never invents a location or a step. Official trophy names, descriptions and grades are shown exactly as PlayStation publishes them.</p>
+    <p>Sources: <a href="https://www.powerpyx.com/gta-6-grand-theft-auto-vi-trophy-guide-roadmap/">PowerPyx — GTA 6 Trophy Guide &amp; Roadmap</a> &middot; <a href="https://www.exophase.com/game/grand-theft-auto-vi-psn/trophies/">Exophase — GTA VI trophies (official list)</a> &middot; <a href="https://www.planetgta6.com/en/gta-6-trophies/">planetgta6.com — GTA 6 Trophies</a> (visible/hidden split).</p>
+  </section>
+</main>
+
+<footer>
+  <p>An unofficial fan guide. Grand Theft Auto and GTA are trademarks of Rockstar Games / Take-Two Interactive; this guide is not affiliated with or endorsed by them, and uses no Rockstar logo, artwork or game screenshots.</p>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

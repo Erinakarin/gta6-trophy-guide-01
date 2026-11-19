@@ -1,0 +1,222 @@
+/* GTA VI trophy guide — own design. Dark theme with a Vice City sunset
+   accent (pink / orange / teal), system fonts only, no network requests. */
+
+:root {
+  --bg: #14101c;
+  --surface: #1e1828;
+  --surface-2: #262036;
+  --line: #3a3049;
+  --text: #f2ecf7;
+  --muted: #b3a8c4;
+  --pink: #ff5e8a;
+  --orange: #ff9a3d;
+  --teal: #2dd4bf;
+  --gold: #f5c542;
+  --silver: #c9d1d9;
+  --bronze: #d08a4e;
+  --danger: #ff6b6b;
+  --radius: 12px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+a { color: var(--teal); }
+a:hover { text-decoration: underline; }
+
+.masthead {
+  background: linear-gradient(135deg, #2a1245 0%, #7a1e4d 45%, #c2542e 75%, #1d5c5a 100%);
+  padding: 40px 20px 28px;
+}
+.masthead-inner { max-width: 960px; margin: 0 auto; }
+.kicker {
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 12px;
+  color: #ffd9e8;
+}
+.masthead h1 {
+  margin: 0 0 10px;
+  font-size: clamp(28px, 5vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.lede { margin: 0 0 18px; max-width: 640px; color: #f7eef4; }
+
+.progress-wrap { max-width: 640px; }
+.progress-bar {
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--pink), var(--orange));
+  transition: width 0.3s ease;
+}
+.progress-text { margin: 8px 0 0; font-size: 14px; color: #ffe9f2; }
+
+main { max-width: 960px; margin: 0 auto; padding: 24px 20px 40px; }
+section { margin-bottom: 32px; }
+h2 { font-size: 22px; margin: 0 0 12px; }
+h3 { font-size: 17px; margin: 0 0 6px; }
+
+.controls { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
+.control-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.search-label { flex: 1 1 260px; font-size: 14px; color: var(--muted); }
+.search-label input {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+}
+.toggle { display: flex; align-items: center; gap: 8px; font-size: 14px; cursor: pointer; }
+.toggle input { width: 18px; height: 18px; accent-color: var(--pink); }
+
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.filter-btn {
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+}
+.filter-btn:hover { border-color: var(--pink); }
+.filter-btn.active { background: var(--pink); border-color: var(--pink); color: #fff; }
+.filter-btn .count { opacity: 0.75; font-size: 12px; }
+
+.data-row { margin-top: 14px; }
+.action-btn {
+  padding: 9px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+}
+.action-btn:hover { border-color: var(--teal); }
+.action-btn.danger { color: var(--danger); }
+.import-btn { display: inline-block; }
+.import-msg { font-size: 14px; color: var(--muted); }
+
+.roadmap-note { color: var(--muted); margin: 0 0 16px; }
+.roadmap-phases { display: grid; gap: 12px; }
+.phase {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--orange);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+.phase-warning {
+  background: #3d1f2b;
+  border: 1px solid #6b2d40;
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: #ffd9e8;
+}
+.phase-count { font-size: 13px; color: var(--muted); margin: 8px 0 4px; }
+.phase-trophies { font-size: 13px; color: var(--muted); margin: 0; }
+
+.trophy-list { display: grid; gap: 12px; }
+.trophy-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+.trophy-card.earned { border-color: var(--teal); }
+.trophy-card.earned h3 { text-decoration: line-through; text-decoration-thickness: 2px; }
+.card-head { display: flex; gap: 12px; align-items: flex-start; }
+.check { flex: 0 0 auto; padding-top: 2px; cursor: pointer; }
+.check input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.check span {
+  display: inline-block;
+  width: 22px; height: 22px;
+  border: 2px solid var(--muted);
+  border-radius: 6px;
+  background: var(--bg);
+}
+.check input:checked + span { background: var(--teal); border-color: var(--teal); }
+.check input:focus-visible + span { outline: 2px solid var(--pink); outline-offset: 2px; }
+.card-title { flex: 1; min-width: 0; }
+.card-title h3 { margin: 0; }
+.card-meta { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 0; }
+.grade {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.grade-platinum { background: #e8f4ff; color: #1d4ed8; }
+.grade-gold { background: var(--gold); color: #3d2c00; }
+.grade-silver { background: var(--silver); color: #1f2937; }
+.grade-bronze { background: var(--bronze); color: #fff; }
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+.tag-missable { border-color: var(--danger); color: var(--danger); }
+.official { color: var(--muted); font-style: italic; margin: 10px 0 8px; }
+.guide { margin: 0 0 10px; }
+.missable-note {
+  background: #3d1f2b;
+  border: 1px solid #6b2d40;
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: #ffd9e8;
+  margin: 0 0 10px;
+}
+.source { font-size: 13px; color: var(--muted); margin: 0; }
+.confidence { font-weight: 700; color: var(--text); }
+.reveal-btn {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: 1px dashed var(--muted);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 14px;
+  cursor: pointer;
+}
+.reveal-btn:hover { color: var(--text); border-color: var(--text); }
+.empty-msg { color: var(--muted); }
+
+.sources-note { color: var(--muted); font-size: 14px; }
+footer {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px 32px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+@media (max-width: 640px) {
+  .masthead { padding: 28px 16px 20px; }
+  main { padding: 16px 12px 28px; }
+}
